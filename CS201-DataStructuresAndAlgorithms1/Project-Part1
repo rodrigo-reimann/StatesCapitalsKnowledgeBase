@@ -1,0 +1,109 @@
+import java.util.Scanner;
+import java.util.Arrays;
+
+public class USStates {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String[][] statesAndCapitals = {
+				  {"Vermont", "Montpelier"},
+				  {"Virginia", "Richmond"},
+				  {"Washington", "Olympia"},
+				  {"West Virginia", "Charleston"},
+				  {"Wisconsin", "Madison"},
+				  {"Wyoming", "Cheyenne"},
+				  {"Alabama", "Montgomery"},
+				  {"Alaska", "Juneau"},
+				  {"Arizona", "Phoenix"},
+				  {"Arkansas", "Little Rock"},
+				  {"California", "Sacramento"},
+				  {"Colorado", "Denver"},
+				  {"Connecticut", "Hartford"},
+				  {"Delaware", "Dover"},
+				  {"Florida", "Tallahassee"},
+				  {"Georgia", "Atlanta"},
+				  {"Hawaii", "Honolulu"},
+				  {"Idaho", "Boise"},
+				  {"Illinois", "Springfield"},
+				  {"Indiana", "Indianapolis"},
+				  {"Iowa", "Des Moines"},
+				  {"Kansas", "Topeka"},
+				  {"Kentucky", "Frankfort"},
+				  {"Louisiana", "Baton Rouge"},
+				  {"Maine", "Augusta"},
+				  {"Maryland", "Annapolis"},
+				  {"Massachusetts", "Boston"},
+				  {"Michigan", "Lansing"},
+				  {"Minnesota", "St. Paul"},
+				  {"Mississippi", "Jackson"},
+				  {"Missouri", "Jefferson City"},
+				  {"Montana", "Helena"},
+				  {"Nebraska", "Lincoln"},
+				  {"Nevada", "Carson City"},
+				  {"New Hampshire", "Concord"},
+				  {"New Jersey", "Trenton"},
+				  {"New Mexico", "Santa Fe"},
+				  {"New York", "Albany"},
+				  {"North Carolina", "Raleigh"},
+				  {"North Dakota", "Bismarck"},
+				  {"Ohio", "Columbus"},
+				  {"Oklahoma", "Oklahoma City"},
+				  {"Oregon", "Salem"},
+				  {"Pennsylvania", "Harrisburg"},
+				  {"Rhode Island", "Providence"},
+				  {"South Carolina", "Columbia"},
+				  {"South Dakota", "Pierre"},
+				  {"Tennessee", "Nashville"},
+				  {"Texas", "Austin"},
+				  {"Utah", "Salt Lake City"}
+		};
+		//Sort the array by state name using the java.util and a lambda expression
+		Arrays.sort(statesAndCapitals, (a, b) -> a[0].compareTo(b[0]));
+		
+		//Creates a user input system and asks the user for a capital
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Enter a capital for a state");
+		String input = scanner.nextLine();
+		
+		//Loop through array and search for capital match
+		boolean found = false;
+		for (String [] stateAndCapital : statesAndCapitals) {
+			if (input.equalsIgnoreCase(stateAndCapital[1])) {
+				System.out.println("That is correct! This is the capital of " + stateAndCapital[0]);
+				found = true;
+				break;
+			}
+		}
+		
+		if (!found) {
+			System.out.println("That is not a capital :(");
+			System.out.println("This is the list of states and their capitals");
+		}
+		for (String[] stateAndCapital : statesAndCapitals) {	
+			System.out.println(stateAndCapital[0] + ":" + stateAndCapital[1]);			
+		}
+		
+		for (int i = 0; i < statesAndCapitals.length - 1; i++) {
+			for (int j = 0; j < statesAndCapitals.length - i - 1; j++) {
+				if (statesAndCapitals[j][1].compareTo(statesAndCapitals[j + 1][1]) > 0) {
+					String[] temp = statesAndCapitals[j];
+					statesAndCapitals[j] = statesAndCapitals[j + 1];
+					statesAndCapitals[j + 1] = temp;
+		        }
+		    }
+		}
+		System.out.println("Enter all state capitals you can remember, separated by commas");
+		String capitals = scanner.nextLine();
+		String[] answers = capitals.split(",");
+		int count = 0;
+		for (String answer : answers) {
+			for (String[] stateAndCapital : statesAndCapitals) {
+				if (answer.trim().equalsIgnoreCase(stateAndCapital[1])) {
+					count++;
+					break;
+				}
+			}
+		}
+		System.out.println("You got " + count + " correct answers");
+	}
+}
