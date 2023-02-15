@@ -5,6 +5,8 @@ public class USStates {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		
+		//create states and capitals two-dimensional array
 		String[][] statesAndCapitals = {
 				  {"Vermont", "Montpelier"},
 				  {"Virginia", "Richmond"},
@@ -83,6 +85,7 @@ public class USStates {
 			System.out.println(stateAndCapital[0] + ":" + stateAndCapital[1]);			
 		}
 		
+		//bubble sort by capital
 		for (int i = 0; i < statesAndCapitals.length - 1; i++) {
 			for (int j = 0; j < statesAndCapitals.length - i - 1; j++) {
 				if (statesAndCapitals[j][1].compareTo(statesAndCapitals[j + 1][1]) > 0) {
@@ -92,6 +95,8 @@ public class USStates {
 		        }
 		    }
 		}
+		
+		//ask the user for input and show number of correct answers
 		System.out.println("Enter all state capitals you can remember, separated by commas");
 		String capitals = scanner.nextLine();
 		String[] answers = capitals.split(",");
