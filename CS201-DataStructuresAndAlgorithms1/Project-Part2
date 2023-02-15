@@ -7,6 +7,8 @@ public class Part2_Hash {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		
+		//create a HashMap of states and capitals
 		Map<String, String> statesAndCapitals = new HashMap<>();
 		statesAndCapitals.put("Alabama", "Montgomery");
 		statesAndCapitals.put("Alaska", "Juneau");
@@ -61,24 +63,26 @@ public class Part2_Hash {
 		
 		System.out.println(statesAndCapitals);
 		
+		//add states and capitals to a TreeMap
 		TreeMap<String, String> treemap = new TreeMap<>();
 		for (Map.Entry<String, String> entry : statesAndCapitals.entrySet()) {
 			treemap.put(entry.getKey(), entry.getValue());
 		}
+		
+		//ask the user for input, gather match from the treemap and reply to user
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter a state");
 		String input = scanner.nextLine();
-		//for (Map.Entry<String, String> entry : treemap.entrySet()) {
-			//System.out.println("State: " + entry.getKey() +", Capital " + entry.getValue());
-		//}
+
 		boolean stateFound = false;
-		for (Map.Entry<String, String> entry : statesAndCapitals.entrySet()) {
+		for (Map.Entry<String, String> entry : treemap.entrySet()) {
 			if (input.equalsIgnoreCase(entry.getKey())) {
 				System.out.println("The capital is " + entry.getValue());
 				stateFound = true;
 				break;
 			}
 		}
+		
 		if (!stateFound)
 			System.out.println("This state does not exist!");
 	}
